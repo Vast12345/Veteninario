@@ -94,7 +94,7 @@
                     </div>
                 </section>
                 <footer class="modal-card-foot">
-                    <button class="button is-success" data-target="modal-js" id="Modal1">Save changes</button>
+                    <button class="button is-success" data-target="modal-js" id="Modal1">Next</button>
                     <button class="button">Cancel</button>
                 </footer>
             </div>
@@ -161,7 +161,7 @@
                     <div class="field">
                         <label class="label">Cedula:</label>
                         <div class="control">
-                            <input type="number" class="input" placeholder="Input your cedula.">
+                            <input type="number" class="input" placeholder="Input your cedula." id="cedMostrar">
                         </div>
                     </div>
                 </section>
@@ -290,6 +290,7 @@
                             }
                             if ($saveButton.id === "obtainData") {
                                 // Hagas la funcion para obtener los datos dentro del base de datos y crear html dentro del table para mostrar los datos.
+            
                             }
                             closeModal($modal);
                             openModal($target);
