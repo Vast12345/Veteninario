@@ -20,7 +20,9 @@
             top: -100px;
         }
         @media screen and (max-width: 768px) {
-
+            .column h1, h2 {
+                text-align: center;
+            }
             .column img {
                 max-width: 450px;
             }
@@ -45,7 +47,7 @@
             </div>
         </div>
     </section>
-    <div style="height: 50vh; background-color: var(--zomp); position: relative;" class="is-flex is-align-items-center">
+    <div style="height: 500px; background-color: var(--zomp); position: relative;" class="is-flex is-align-items-center">
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
             xmlns:svgjs="http://svgjs.dev/svgjs" width="100%" height="200" preserveAspectRatio="none"
             viewBox="0 0 1440 200">
@@ -139,7 +141,7 @@
                         </div>
                     </div>
                     <div class="field">
-                        <input type="date" name="dateMeet" id="citaDate">
+                        <input type="datetime-local" name="dateMeet" id="citaDate">
                     </div>
                 </section>
                 <footer class="modal-card-foot">
@@ -164,8 +166,35 @@
                     </div>
                 </section>
                 <footer class="modal-card-foot">
-                    <button class="button is-success" style="background-color: var(--midnight-green); color: var(--white);">Search</button>
+                    <button class="js-modal-trigger button is-success" style="background-color: var(--midnight-green); color: var(--white);" data-target="modal-js-table" id="obtainData">Search</button>
                     <button class="button">Cancel</button>
+                </footer>
+            </div>
+        </div>
+        <div class="modal" id="modal-js-table">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Mostrar Citas</p>
+                    <button class="delete" aria-label="close"></button>
+                </header>
+                <section class="moda-card-body">
+                    <table class="table is-striped" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th title="Animal">Animal</th>
+                                <th title="Breed">Breed</th>
+                                <th title="Razon">Razon de Cita</th>
+                                <th title="Date">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+
+                        </tbody>
+                    </table>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button" id="eraseTable">Cancel</button>
                 </footer>
             </div>
         </div>
@@ -259,6 +288,9 @@
                                 console.log(citaCed, citaAnimal, citaDate, citaRazon);
 
                             }
+                            if ($saveButton.id === "obtainData") {
+                                // Hagas la funcion para obtener los datos dentro del base de datos y crear html dentro del table para mostrar los datos.
+                            }
                             closeModal($modal);
                             openModal($target);
                         }
@@ -270,6 +302,10 @@
                     const $target = $close.closest('.modal');
 
                     $close.addEventListener('click', () => {
+                        if ($close.id === "eraseTable") {
+                            document.getElementById("tableBody").innerHTML = "";
+                            console.log("Successfully erased table.");
+                        }
                         closeModal($target);
                     });
                 });
