@@ -84,12 +84,6 @@
                             </div>
                         </div>
                         <div class="field">
-                            <label class="label">Cedula</label>
-                            <div class="control">
-                                <input type="number" class="input" placeholder="Input your cedula">
-                            </div>
-                        </div>
-                        <div class="field">
                             <label class="label">Telefono</label>
                             <div class="control">
                                 <input type="text" class="input" placeholder="Input your telefono">
@@ -113,23 +107,29 @@
                 </header>
                 <section class="modal-card-body">
                     <div class="field">
+                        <label class="label">Cedula</label>
+                        <div class="control">
+                            <input type="number" class="input" placeholder="Input your cedula" id="citaCedula">
+                        </div>
+                    </div>
+                    <div class="field">
                         <label class="label">Animal</label>
                         <div class="control">
-                            <input type="text" class="input" placeholder="Input the pet you wish to revise">
+                            <input type="text" class="input" placeholder="Input the pet you wish to revise" id="citaAnimal">
                         </div>
                     </div>
                     <div class="is-flex is-justify-content-space-between">
                         <div class="field">
                             <label class="label">Breed</label>
                             <div class="control">
-                                <input type="text" class="input" placeholder="Input your pets breed">
+                                <input type="text" class="input" placeholder="Input your pets breed" id="citaBreed">
                             </div>
                         </div>
                         <div class="field">
                             <label class="label">Razon de cita</label>
                             <div class="control">
                                 <div class="select">
-                                    <select>
+                                    <select id="citaRazon">
                                       <option>Vaccinacion</option>
                                       <option>Checkup</option>
                                       <option>Grooming</option>
@@ -139,11 +139,11 @@
                         </div>
                     </div>
                     <div class="field">
-                        <input type="date" name="dateMeet" id="dateMeet">
+                        <input type="date" name="dateMeet" id="citaDate">
                     </div>
                 </section>
                 <footer class="modal-card-foot">
-                    <button class="button is-success" style="background-color: var(--midnight-green); color: var(--white);">Save changes</button>
+                    <button class="button is-success" style="background-color: var(--midnight-green); color: var(--white);" id="saveData">Save changes</button>
                     <button class="button">Cancel</button>
                 </footer>
             </div>
@@ -224,6 +224,8 @@
                     return isValid;
                 }
 
+
+
                 // Add a click event on buttons to open a specific modal
                 (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
                     const modal = $trigger.dataset.target;
@@ -247,6 +249,16 @@
 
                         if (isValid) {
                             // Close the modal if all inputs are valid
+                            if ($saveButton.id === "saveData") {
+                                // Aqui hagas los funciones para recojer los datos para subir lo al base de datos
+                                // Esto es un ejemplo arragando los valores de los inputs, en el function suyo debes arragar todos estos datos y ponerlo en el base de datos.
+                                const citaCed = document.getElementById("citaCedula").value;
+                                const citaAnimal = document.getElementById("citaAnimal").value;
+                                const citaDate = document.getElementById("citaDate").value;
+                                const citaRazon = document.getElementById("citaRazon").value;
+                                console.log(citaCed, citaAnimal, citaDate, citaRazon);
+
+                            }
                             closeModal($modal);
                             openModal($target);
                         }
