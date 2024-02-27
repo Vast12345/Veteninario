@@ -19,11 +19,17 @@
             position: absolute;
             top: -100px;
         }
+        @media screen and (max-width: 768px) {
+
+            .column img {
+                max-width: 450px;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <section class="section is-large" style="background-color: var(--white);">
+    <section class="section" style="background-color: var(--white); margin-bottom: 200px;">
         <div class="container">
             <div class="box" style="background-color: var(--mint-cream);">
                 <div class="columns is-align-items-center">
@@ -31,7 +37,7 @@
                         <h1 class="title is-1">Welcome to Enzo Vet</h1>
                         <h2 class="subtitle is-2">The greatest Vetinario in the city!</h2>
                     </div>
-                    <div class="column">
+                    <div class="column is-flex is-justify-content-center">
                         <img src="content//63b8302f55889520c7f6f82785212d98.svg" alt="Enzo Vet Logo"
                             style="min-width: 200px;">
                     </div>
@@ -142,11 +148,35 @@
                 </footer>
             </div>
         </div>
-        <div class="container is-medium is-flex is-justify-content-center">
-            <div class="box is-flex is-justfy-content-center px-6">
-                <div class="container">
+        <div class="modal" id="modal-js-cedula">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Mostrar Citas</p>
+                    <button class="delete" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body">
+                    <div class="field">
+                        <label class="label">Cedula:</label>
+                        <div class="control">
+                            <input type="number" class="input" placeholder="Input your cedula.">
+                        </div>
+                    </div>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-success" style="background-color: var(--midnight-green); color: var(--white);">Search</button>
+                    <button class="button">Cancel</button>
+                </footer>
+            </div>
+        </div>
+        <div class="container is-flex is-justify-content-center">
+            <div class="box is-flex is-flex-direction-column is-justfy-content-center px-6">
+                <div class="container mb-6">
                     <button class="js-modal-trigger button" data-target="modal-js-example"
-                        style="background-color: var(--midnight-green); color: var(--white);">Agregar Cita</button>
+                        style="background-color: var(--midnight-green); color: var(--white); width: 200px;">Agregar Cita</button>
+                </div>
+                <div class="container">
+                    <button class="js-modal-trigger button" data-target="modal-js-cedula" style="width: 200px;">Mostrar Citas</button>
                 </div>
             </div>
         </div>
