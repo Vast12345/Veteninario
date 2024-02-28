@@ -1,3 +1,6 @@
+import {psuhInfo } from "./pushInfo.js"
+
+
 document.addEventListener('DOMContentLoaded', () => {
     // Functions to open and close a modal
     function openModal($el) {
@@ -74,10 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     let raza = document.getElementById("citaBreed").value;
                     let fecha_cita = document.getElementById("citaDate").value;
                     console.log(nombrePersona, tipoAnimal, cc, raza, fecha_cita);
+                    psuhInfo(nombrePersona, tipoAnimal, cc, raza, fecha_cita)
                 }
                 if ($saveButton.id === "obtainData") {
                     // Hagas la funcion para obtener los datos dentro del base de datos y crear html dentro del table para mostrar los datos.
 
+                    
                 }
                 closeModal($modal);
                 openModal($target);
