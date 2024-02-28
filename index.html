@@ -70,44 +70,15 @@
             <div class="modal-card">
                 <header class="modal-card-head">
                     <p class="modal-card-title">Añadir Cita</p>
-                    <progress class="progress is-primary mx-6" value="50" max="100"></progress>
                     <button class="delete" aria-label="close"></button>
                 </header>
                 <section class="modal-card-body">
                     <div class="field">
                         <label class="label">Name</label>
                         <div class="control">
-                            <input type="text" class="input" placeholder="Input your name">
-                        </div>
-                        <div class="field">
-                            <label class="label">Email</label>
-                            <div class="control">
-                                <input type="email" class="input" placeholder="Input your email">
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label class="label">Telefono</label>
-                            <div class="control">
-                                <input type="text" class="input" placeholder="Input your telefono">
-                            </div>
+                            <input type="text" class="input" placeholder="Input your name" id="citaNombre">
                         </div>
                     </div>
-                </section>
-                <footer class="modal-card-foot">
-                    <button class="button is-success" data-target="modal-js" id="Modal1">Next</button>
-                    <button class="button">Cancel</button>
-                </footer>
-            </div>
-        </div>
-        <div class="modal" id="modal-js">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <p class="modal-card-title">Añadir Cita</p>
-                    <progress class="progress is-primary mx-6" value="100" max="100"></progress>
-                    <button class="delete" aria-label="close"></button>
-                </header>
-                <section class="modal-card-body">
                     <div class="field">
                         <label class="label">Cedula</label>
                         <div class="control">
@@ -127,25 +98,13 @@
                                 <input type="text" class="input" placeholder="Input your pets breed" id="citaBreed">
                             </div>
                         </div>
-                        <div class="field">
-                            <label class="label">Razon de cita</label>
-                            <div class="control">
-                                <div class="select">
-                                    <select id="citaRazon">
-                                      <option>Vaccinacion</option>
-                                      <option>Checkup</option>
-                                      <option>Grooming</option>
-                                    </select>
-                                  </div>
-                            </div>
+                        <div class="field is-flex is-align-items-center">
+                            <input type="datetime-local" name="dateMeet" id="citaDate">
                         </div>
-                    </div>
-                    <div class="field">
-                        <input type="datetime-local" name="dateMeet" id="citaDate">
                     </div>
                 </section>
                 <footer class="modal-card-foot">
-                    <button class="button is-success" style="background-color: var(--midnight-green); color: var(--white);" id="saveData">Save changes</button>
+                    <button class="button is-success" id="saveData" style="background-color: var(--midnight-green);">Save Changes</button>
                     <button class="button">Cancel</button>
                 </footer>
             </div>
@@ -210,115 +169,7 @@
             </div>
         </div>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                // Functions to open and close a modal
-                function openModal($el) {
-                    $el.classList.add('is-active');
-                }
-
-                function closeModal($el) {
-                    $el.classList.remove('is-active');
-                    clearInputs($el);
-                }
-
-                function closeAllModals() {
-                    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-                        closeModal($modal);
-                    });
-                }
-
-                // Function to clear input fields
-                function clearInputs($modal) {
-                    const $inputs = $modal.querySelectorAll('input');
-                    $inputs.forEach(($input) => {
-                        $input.value = ''; // Clear input value
-                        $input.classList.remove('is-danger'); // Remove any validation error class
-                    });
-                }
-
-                // Function to validate input fields
-                function validateInputs($inputs) {
-                    let isValid = true;
-
-                    $inputs.forEach(($input) => {
-                        if ($input.value.trim() === '') {
-                            $input.classList.add('is-danger');
-                            isValid = false;
-                        } else {
-                            $input.classList.remove('is-danger');
-                        }
-                    });
-
-                    return isValid;
-                }
-
-
-
-                // Add a click event on buttons to open a specific modal
-                (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
-                    const modal = $trigger.dataset.target;
-                    const $target = document.getElementById(modal);
-
-                    $trigger.addEventListener('click', () => {
-                        openModal($target);
-                    });
-                });
-
-                // Add event listener to the "Save changes" button
-                (document.querySelectorAll('.modal-card-foot .button.is-success') || []).forEach(($saveButton) => {
-                    const $modal = $saveButton.closest('.modal');
-                    const modalTarget = $saveButton.dataset.target;
-                    const $target = document.getElementById(modalTarget);
-                    const $inputs = $modal.querySelectorAll('input');
-
-                    $saveButton.addEventListener('click', () => {
-                        // Validate input fields
-                        const isValid = validateInputs($inputs);
-
-                        if (isValid) {
-                            // Close the modal if all inputs are valid
-                            if ($saveButton.id === "saveData") {
-                                // Aqui hagas los funciones para recojer los datos para subir lo al base de datos
-                                // Esto es un ejemplo arragando los valores de los inputs, en el function suyo debes arragar todos estos datos y ponerlo en el base de datos.
-                                const citaCed = document.getElementById("citaCedula").value;
-                                const citaAnimal = document.getElementById("citaAnimal").value;
-                                const citaDate = document.getElementById("citaDate").value;
-                                const citaRazon = document.getElementById("citaRazon").value;
-                                console.log(citaCed, citaAnimal, citaDate, citaRazon);
-
-                            }
-                            if ($saveButton.id === "obtainData") {
-                                // Hagas la funcion para obtener los datos dentro del base de datos y crear html dentro del table para mostrar los datos.
-                            
-                            }
-                            closeModal($modal);
-                            openModal($target);
-                        }
-                    });
-                });
-
-                // Add a click event on various child elements to close the parent modal
-                (document.querySelectorAll('.modal-background, .modal-card-head .delete, .modal-card-foot .button:not(.is-success)') || []).forEach(($close) => {
-                    const $target = $close.closest('.modal');
-
-                    $close.addEventListener('click', () => {
-                        if ($close.id === "eraseTable") {
-                            document.getElementById("tableBody").innerHTML = "";
-                            console.log("Successfully erased table.");
-                        }
-                        closeModal($target);
-                    });
-                });
-
-                // Add a keyboard event to close all modals
-                document.addEventListener('keydown', (event) => {
-                    if (event.key === "Escape") {
-                        closeAllModals();
-                    }
-                });
-            });
-        </script>
+        <script src="App.js" type="module" defer></script>
         <script src="Firebase.js" type="module"></script>
 </body>
 
