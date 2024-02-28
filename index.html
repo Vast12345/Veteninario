@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <script src="https://kit.fontawesome.com/ff0fab0295.js" crossorigin="anonymous"></script>
     <style>
         :root {
             --mint-cream: #E6F2EFff;
@@ -15,9 +16,14 @@
             --zomp: #0A9D7Fff;
         }
 
-        svg {
+        #waveSVG {
             position: absolute;
             top: -100px;
+        }
+        #checkmark {
+            width: 150px;
+            color: var(--zomp);
+            margin: 0 auto;
         }
         @media screen and (max-width: 768px) {
             .column h1, h2 {
@@ -71,7 +77,7 @@
             <div class="modal-background"></div>
             <div class="modal-card">
                 <header class="modal-card-head">
-                    <p class="modal-card-title">Añadir Cita</p>
+                    <p class="modal-card-title">Reserve Appointment</p>
                     <button class="delete" aria-label="close"></button>
                 </header>
                 <section class="modal-card-body">
@@ -106,7 +112,25 @@
                     </div>
                 </section>
                 <footer class="modal-card-foot">
-                    <button class="button is-success" id="saveData" style="background-color: var(--midnight-green);">Save Changes</button>
+                    <button class="js-modal-trigger button is-success" data-target="modal-js-checkmark" id="saveData" style="background-color: var(--midnight-green);">Save Changes</button>
+                    <button class="button">Cancel</button>
+                </footer>
+            </div>
+        </div>
+        <div class="modal" id="modal-js-checkmark">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Reserve Appointments</p>
+                    <button class="delete" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body is-flex is-justify-content-center">
+                    <div class="field is-flex is-flex-direction-column is-justfy-content-center is-text-align-center">
+                        <svg id="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#0a9d7f" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
+                        <h1 class="title">Appointment Registered!</h1>
+                    </div>
+                </section>
+                <footer class="modal-card-foot">
                     <button class="button">Cancel</button>
                 </footer>
             </div>
@@ -115,7 +139,7 @@
             <div class="modal-background"></div>
             <div class="modal-card">
                 <header class="modal-card-head">
-                    <p class="modal-card-title">Mostrar Citas</p>
+                    <p class="modal-card-title">Show Appointments</p>
                     <button class="delete" aria-label="close"></button>
                 </header>
                 <section class="modal-card-body">
@@ -136,7 +160,7 @@
             <div class="modal-background"></div>
             <div class="modal-card">
                 <header class="modal-card-head">
-                    <p class="modal-card-title">Mostrar Citas</p>
+                    <p class="modal-card-title">Show Appointments</p>
                     <button class="delete" aria-label="close" id="eraseTable"></button>
                 </header>
                 <section class="moda-card-body">
@@ -164,10 +188,10 @@
             <div class="box is-flex is-flex-direction-column is-justfy-content-center px-6">
                 <div class="container mb-6">
                     <button class="js-modal-trigger button" data-target="modal-js-example"
-                        style="background-color: var(--midnight-green); color: var(--white); width: 200px;">Agregar Cita</button>
+                        style="background-color: var(--midnight-green); color: var(--white); width: 200px;">Add Appointment</button>
                 </div>
                 <div class="container">
-                    <button class="js-modal-trigger button" data-target="modal-js-cedula" style="width: 200px;">Mostrar Citas</button>
+                    <button class="js-modal-trigger button" data-target="modal-js-cedula" style="width: 200px;">Show Appointments</button>
                 </div>
             </div>
         </div>
@@ -183,9 +207,9 @@
     </section>
     
 
-        <script src="App.js" type="module" defer></script>
-        <script src="Firebase.js" type="module"></script>
-        <script src="pushInfo.js" type="module"></script>
+    <script src="App.js" type="module" defer></script>
+    <script src="Firebase.js" type="module"></script>
+    <script src="pushInfo.js" type="module"></script>
 </body>
 
 </html>
