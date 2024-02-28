@@ -30,8 +30,3 @@ export async function psuhInfo (nombrePersona, tipoAnimal, cc, raza, fecha_cita)
     }
 
 }
-
-document.addEventListener('uploading',()=>{
-    console.log("aqui deberia saltar un modal check");
-    
-})
