@@ -23,9 +23,15 @@ export async function psuhInfo (nombrePersona, tipoAnimal, cc, raza, fecha_cita)
         });
     
         console.log("Document written with ID: ", docRef.id);
+        let uploading = new Event('uploading');
+        document.dispatchEvent(uploading);
     } catch (e) {
         console.error("Error adding document: ", e);
     }
 
 }
 
+document.addEventListener('uploading',()=>{
+    console.log("aqui deberia saltar un modal check");
+    
+})
